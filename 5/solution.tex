@@ -1,0 +1,204 @@
+\documentclass[12pt]{extarticle}
+
+\let\Overrightarrow\overrightarrow
+\let\vecarrow\overrightarrow
+
+
+%other%
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{caption}
+\usepackage{csquotes}
+\usepackage[export]{adjustbox}
+\usepackage{wrapfig}
+\usepackage{setspace}
+\usepackage{anyfontsize}
+\usepackage{titlesec}
+\titleformat{\section}{
+	\normalfont\fontsize{20}{20}\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{
+	\normalfont\fontsize{17}{20}\bfseries}{\thesubsection}{0.1em}{}
+\usepackage{relsize}
+%other%
+
+
+
+%%\newcommand{\F}{\Oldmathbfcal{F}}
+%math%
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+%%\usepackage[cal = pxtx, scr = dutchcal]{mathalfa}
+
+
+
+%\usepackage{unicode-math}
+%\newtheorem*{}{\textup{Лемма}}
+\newtheorem*{theorem}{\textup{Теорема}}
+\newtheorem*{remark}{\textup{Комментарий}}
+%\renewcommand\qedsymbol{$\blacksquare$}
+%\usepackage{parskip}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{polar}
+\usepgflibrary{shapes.geometric}
+\usetikzlibrary{calc}
+
+
+\renewenvironment{proof}
+    {\noindent \textit{Доказательство.}\\
+	\indent $\square$}
+	{ $\blacksquare$\\ }
+
+\newenvironment{solution}
+	{\vspace{-4.3mm} \noindent\textbf{Решение.}}
+
+
+\renewenvironment{remark}
+    {\noindent\textbf{Коментарий}}
+
+\usepackage{tikz}
+   \usetikzlibrary{calc}
+
+\newcommand{\arc}[0]{
+   \tikz [baseline = (N.base), every node/.style={}] {
+	  \node [inner sep = 0pt] (N){}; %{$#0$};
+      \draw [line width = 0.8pt] plot [smooth, tension=1.3] coordinates {
+         ($(N.north west) + (-1.5ex,0.6ex+0.4ex)$)
+         ($(N.north)      + (-0.75ex,0+0.4ex)$)
+         ($(N.north east) + (0ex,0.6ex+0.4ex)$)
+      };
+   }
+}
+
+%% copired from https://tex.stackexchange.com/questions/66216/draw-arc-in-tikz-when-center-of-circle-is-specified
+
+\def\centerarc[#1](#2)(#3:#4:#5)% Syntax: [draw options] (center) (initial angle:final angle:radius)
+    { \draw[#1] ($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5); }
+
+\newcommand{\arcangle}[0] {
+    $<$
+    \tikz [overlay,remember picture, 
+        baseline = (N.base), every node/.style={}] {
+	    \node [inner sep = 0pt] (N){};
+        \centerarc[line cap=round](-1.50ex,.58ex)(-60:60:.13);
+        %\node at (-1.50ex,.58ex) {.};
+    }
+}   
+    
+ 
+    %\tikz [baseline = (N.base), every node/.style={}] {
+	    %\node [inner sep = 0pt] (N){}; %{$#0$};
+        %\node (ex,ex) {<};
+        %\node[above] at (0,0) {<};
+        %\draw (0,0) arc (-45:45:.05);
+        %\draw[red] (0,0)--(0,1);
+        %\draw [line width = 0.8pt] plot [smooth, tension=1.3] coordinates {
+        %    ($(N.north west) + (-1.5ex,0.6ex+0.4ex)$)
+        %    ($(N.north)      + (-0.75ex,0+0.4ex)$)
+        %    ($(N.north east) + (0ex,0.6ex+0.4ex)$)
+        %};
+    %}
+
+\def\ang(#1,#2){\(\arcangle (#1, #2)\)}
+%\newcommand{\ang}[2]{\(\arcangle (#1, #2)\)}
+%\newcommand{\anga}[2]{\(\sphericalangle (#1, #2)\)}
+
+\renewenvironment{rcases}
+  {\left.\begin{aligned}}
+  {\end{aligned}\right\rbrace}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+
+%\newcounter{example}[section]
+\newenvironment{example}[1]{\noindent \textbf{Пример #1.}}
+
+\let\mathb\mathbb
+
+
+\newcommand{\N}{\mathb{N}}
+\newcommand{\Z}{\mathb{Z}}
+\newcommand{\R}{\mathb{R}}
+\newcommand{\F}{\mathbfcal{F}}
+\renewcommand{\P}{\mathbfcal{P}}
+%\newcommand*{\Z}{\mathbb{Z}}
+%math%
+
+%fonts%
+
+%%\usepackage[russian]{babel}
+%%\usepackage{polyglossia}
+%%\setdefaultlanguage[spelling=modern]{russian}
+%%\setotherlanguage{english}
+%%\setmainfont{CMU Serif}
+%%\setsansfont{CMU Sans Serif}
+%%\setmonofont{CMU Typewriter Text}  
+
+
+%%\setmathfont{Latin Modern Math}
+%\usepackage{mathrsfs}
+%\DeclareMathAlphabet{\mathcal}{T1}{TX}{m}{n}
+
+\usepackage{unicode-math}
+
+
+%\let\Oldmathbfcal=\mathbfcal
+%\renewcommand{\mathbfcal}{\mumble\Oldmathbfcal}
+
+%%\newcommand{\F}{\Oldmathbfcal{F}}
+%%\newcommand{\F}{𝓕}
+
+%\usepackage{fontspec}
+\setmathfont{Latin Modern Math}
+
+\DeclareSymbolFont{symbols}{OMS}{cmsy}{m}{n}
+\DeclareSymbolFont{bsymbols}{OMS}{cmsy}{b}{n}
+\DeclareSymbolFontAlphabet{\mathcal}{symbols}
+\DeclareSymbolFontAlphabet{\mathbfcal}{bsymbols}
+
+%\setmathfont[range = {2131}]{AMS}
+%\usepackage{amsfonts}
+%\usepackage{dsfont}
+
+\begin{document}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=14cm]{./fig.pdf}
+\end{figure}
+
+\textbf{Solution.} As usual, we denote the directed angle between the 
+lines \(a\) and \(b\) by \ang(a,b). \\
+%Let us start our solution with the 
+%following lemma.\\
+
+\noindent \textit{Claim 1.} Lines \(AA_0\), \(BB_0\), \(CC_0\) are concurrent at 
+\(T\), which lies on the circle \((ABC)\).\\
+
+\noindent \textit{Proof.} Let \(T = BB_0 \cap CC_0\). Since quadruples of points \(P, Q, B, B_0\); \(Q, P, C, C_0\); \(Q, P, A, A_0\) are concyclic, 
+we have \ang(PB,BT) = \ang(PB,BB_0) = \ang(PQ,QB_0) = \ang(PQ,QC_0) 
+= \ang(PC,CC_0) = \\ = \ang(PC,CT), which means, that poins 
+\(P,B,C,T\) are concyclic. It follows, that \(T \in (ABC)\) and 
+\(T \in BB_0\). Now we define \(T' = BB_0 \cap AA_0\). 
+Similiraly, points \(P,B,A,T'\) are concylic. That gives us, 
+that \(T' \in (ABC)\) and \(T' \in BB_0\), which means, that \(T=T'\) and 
+we are done. \square \\
+
+Let \(A'\),\(B'\),\(C'\) denote the intersection points of lines 
+\(BB_0\) and \(CC_0\), \(AA_0\) and \(CC_0\), \(BB_0\) and \(AA_0\) 
+respectively.
+
+\noindent \textit{Claim 2.} Let \(S = (ABC) \cap (A'B'C')\). Then \(S\) 
+is symmetric to \(P\) with respect to line \(OQ\).\\
+
+\noindent \textit{Proof.} \square
+
+
+\noindent \textit{Claim 3.} Lines \(AA'\), \(BB'\), \(CC'\) are 
+comcurrent at \(S\).\\
+
+\noindent \textit{Proof.} \square
+\end{document}
